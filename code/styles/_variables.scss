@@ -1,0 +1,96 @@
+@use "functions" as *;
+
+// colors
+$lightBlue: #31c3bd;
+$lightBlueHover: #65e9e4;
+$lightYellow: #f2b137;
+$lightYellowHover: #ffc860;
+$darkNavy: #1a2a33;
+$semiDarkNavy: #1f3641;
+$silver: #a8bfc9;
+$silverHover: #dbe8ed;
+$gradient-1: linear-gradient(90deg, rgba(214, 252, 254, 0) 0%, #d6e6fe 100%);
+
+// Typography
+
+$font-family: "Outfit", sans-serif;
+
+// Define mixins for the text presets
+@mixin heading-l {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.heading-l {
+  @include heading-l;
+}
+
+@mixin heading-m {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.heading-m {
+  @include heading-m;
+}
+
+@mixin heading-s {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+}
+
+.heading-s {
+  @include heading-s;
+}
+
+@mixin heading-xs {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.heading-xs {
+  @include heading-xs;
+}
+
+@mixin body {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.875px;
+}
+
+.body {
+  @include body;
+}
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-col {
+  @include flex-col;
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-row {
+  @include flex-row;
+}

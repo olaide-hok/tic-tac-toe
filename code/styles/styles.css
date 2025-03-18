@@ -1,0 +1,88 @@
+.heading-l {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.heading-m {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.heading-s {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+}
+
+.heading-xs {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.body {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.875px;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+/* General body styling */
+body {
+  position: relative; /* Ensures the body is positioned relative to its normal flow */
+  display: flex; /* Enables flexbox layout */
+  justify-content: center; /* Centers content horizontally */
+  min-height: 100vh; /* Ensures the body takes up at least the full viewport height */
+  font-family: "Outfit", sans-serif;
+  font-style: normal;
+  line-height: normal;
+  background: #1a2a33;
+  font-feature-settings: "liga" off, "clig" off;
+}
+
+/* Media query for screens with a width of up to 375px */
+@media screen and (max-width: 375px) {
+  body {
+    min-height: 100%; /* Ensures the body takes up at least the full height of its parent container */
+  }
+}
+.d-none {
+  display: none;
+}
+
+.d-flex {
+  display: flex;
+}
+
+button {
+  border: none;
+  background: none;
+}
+button:hover {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+/*# sourceMappingURL=styles.css.map */

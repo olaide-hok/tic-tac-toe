@@ -1,0 +1,15 @@
+@use 'sass:math';
+// PX to REM conversion
+$base-size: 16;
+
+@function rem($pixels, $context: $base-size) {
+    @if (math.is-unitless($pixels)) {
+        $pixels: $pixels * 1px;
+    }
+
+    @if (math.is-unitless($context)) {
+        $context: $context * 1px;
+    }
+
+    @return math.div($pixels, $context) * 1rem;
+}
