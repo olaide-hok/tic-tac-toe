@@ -53,7 +53,6 @@ $font-family: "Outfit", sans-serif;
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 1px;
-  text-transform: uppercase;
 }
 
 .heading-xs {
@@ -68,6 +67,16 @@ $font-family: "Outfit", sans-serif;
 
 .body {
   @include body;
+}
+
+@mixin body-b {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.875px;
+}
+
+.body-b {
+  @include body-b;
 }
 
 // Mixins
@@ -99,4 +108,19 @@ $font-family: "Outfit", sans-serif;
   border-radius: 15px;
   width: 100%;
   text-transform: uppercase;
+}
+
+@mixin quit-next-btns {
+  border-radius: 10px;
+  color: $darkNavy;
+  text-transform: uppercase;
+}
+
+@mixin pos-abs-center {
+  position: absolute;
+  top: 50%; /* Move down by 50% of the parent's height */
+  left: 50%; /* Move right by 50% of the parent's width */
+  transform: translate(-50%, -50%);
+  width: 100%;
+  z-index: 2;
 }
