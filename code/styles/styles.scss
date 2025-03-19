@@ -51,6 +51,97 @@ ul {
   list-style-type: none;
 }
 
+main {
+  &.container {
+    padding: rem(110px) rem(24px);
+    position: relative;
+
+    .wrapper {
+      flex-direction: column;
+      align-items: center;
+      row-gap: 2rem;
+      width: rem(327px);
+
+      .pick-player {
+        border-radius: 15px;
+        background: $semiDarkNavy;
+        box-shadow: 0px -8px 0px 0px #10212a inset;
+        flex-direction: column;
+        row-gap: 2rem;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        width: 100%;
+
+        .instruction {
+          @include heading-xs;
+          color: $silver;
+          text-transform: uppercase;
+        }
+
+        .pick_mark {
+          background-color: $darkNavy;
+          border-radius: 10px;
+          column-gap: 1rem;
+          padding: rem(9px) rem(8px);
+          width: 100%;
+
+          .x_btn {
+            flex: 1;
+            border-radius: 10px;
+
+            &:hover {
+              background-color: rgba(168, 191, 201, 0.05);
+            }
+          }
+
+          .o_btn {
+            background-color: $silver;
+            border-radius: 10px;
+            flex: 1;
+            padding: rem(11px) 0;
+          }
+        }
+
+        .reminder {
+          @include body;
+          color: $silver;
+          text-transform: uppercase;
+        }
+      }
+
+      .select-opponent {
+        row-gap: 1rem;
+        width: 100%;
+
+        .vs-cpu_btn {
+          @include heading-xs;
+          @include vs-btn;
+          background: $lightYellow;
+          box-shadow: 0px -8px 0px 0px #cc8b13 inset;
+          padding: rem(14px) 0 rem(22px);
+
+          &:hover {
+            background: $lightYellowHover;
+          }
+        }
+
+        .vs-player_btn {
+          @include heading-xs;
+          @include vs-btn;
+          background: $lightBlue;
+          box-shadow: 0px -8px 0px 0px #118c87 inset;
+          padding: rem(14px) 0 rem(22px);
+
+          &:hover {
+            background: $lightBlueHover;
+          }
+        }
+      }
+    }
+  }
+}
+
 @media screen and (min-width: 768px) {
 }
 
