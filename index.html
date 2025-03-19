@@ -24,9 +24,9 @@
   </head>
   <body>
     <main class="container">
-      <div class="d-flex wrapper">
+      <!-- New game menu start -->
+      <div class="d-none wrapper">
         <img src="./code/assets/logo.svg" alt="tic tac logo">
-        <!-- New game menu start -->
 
         <div class="d-flex pick-player">
           <h1 class="instruction">Pick player 1's mark</h1>
@@ -44,8 +44,10 @@
         </div>
 
         <div class="flex-col select-opponent">
-          <button class="vs-cpu_btn" type="button">New Game (vs CPU)</button>
-          <button class="vs-player_btn" type="button">
+          <button id="singlePlayer" class="vs-cpu_btn" type="button">
+            New Game (vs CPU)
+          </button>
+          <button id="multiPlayer" class="vs-player_btn" type="button">
             New Game (vs player)
           </button>
         </div>
@@ -53,14 +55,48 @@
       <!-- New game menu end -->
 
       <!-- Game board start -->
-
-      <div class="game_board"></div>
+      <div class="d-flex game_board">
+        <div class="flex-row status">
+          <img src="./code/assets/logo.svg" alt="x-o logo">
+          <div class="current_player">x turn</div>
+          <button id="reset-game" class="restart" type="button">
+            <img src="./code/assets/icon-restart.svg" alt="restart game">
+          </button>
+        </div>
+        <div class="flex-col tiles-and-scores">
+          <div class="tiles">
+            <div class="tile" data-index="0"></div>
+            <div class="tile" data-index="1"></div>
+            <div class="tile" data-index="2"></div>
+            <div class="tile" data-index="3"></div>
+            <div class="tile" data-index="4"></div>
+            <div class="tile" data-index="5"></div>
+            <div class="tile" data-index="6"></div>
+            <div class="tile" data-index="7"></div>
+            <div class="tile" data-index="8"></div>
+          </div>
+          <div class="flex-row scores">
+            <div class="you">
+              <span> X (You)</span>
+              <p id="x-score">14</p>
+            </div>
+            <div class="ties">
+              <span> Ties</span>
+              <p id="ties">32</p>
+            </div>
+            <div class="cpu">
+              <span> O (CPU)</span>
+              <p id="cpu-scores">11</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <!-- x/o icon -->
-    <!-- turn X (You) -->
+    <!-- turn -->
     <!-- Your score -->
-    <!-- Ties -->
+    <!--  -->
     <!-- Ties score -->
     <!-- X (CPU) -->
     <!-- CPU score -->
