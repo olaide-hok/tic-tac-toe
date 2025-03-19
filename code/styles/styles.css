@@ -86,10 +86,10 @@ ul {
 }
 
 main.container {
-  padding: 6.875rem 1.5rem;
   position: relative;
 }
 main.container .wrapper {
+  padding: 6.875rem 1.5rem;
   flex-direction: column;
   align-items: center;
   row-gap: 2rem;
@@ -174,6 +174,83 @@ main.container .wrapper .select-opponent .vs-player_btn {
 }
 main.container .wrapper .select-opponent .vs-player_btn:hover {
   background: #65e9e4;
+}
+main.container .game_board {
+  padding: 1.5rem 1.5rem 7.9375rem;
+  flex-direction: column;
+  row-gap: 4rem;
+  width: 23.4375rem;
+}
+main.container .game_board .status {
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+main.container .game_board .status .current_player {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.875px;
+  border-radius: 5px;
+  background: #1f3641;
+  box-shadow: 0px -4px 0px 0px #10212a inset;
+  color: #a8bfc9;
+  padding: 0.625rem 0.9375rem 0.875rem;
+  text-transform: uppercase;
+}
+main.container .game_board .status .restart {
+  background-color: #a8bfc9;
+  border-radius: 8px;
+  box-shadow: 0px -8px 0px 0px #a8bfc9 inset;
+  width: 40px;
+  height: 40px;
+}
+main.container .game_board .tiles-and-scores {
+  row-gap: 1.25rem;
+}
+main.container .game_board .tiles-and-scores .tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+main.container .game_board .tiles-and-scores .tiles .tile {
+  border-radius: 10px;
+  background: #1f3641;
+  box-shadow: 0px -8px 0px 0px #10212a inset;
+  width: 96px;
+  height: 96px;
+}
+main.container .game_board .tiles-and-scores .tiles .tile:hover {
+  cursor: pointer;
+}
+main.container .game_board .tiles-and-scores .scores {
+  column-gap: 1.25rem;
+}
+main.container .game_board .tiles-and-scores .scores div {
+  border-radius: 10px;
+  padding: 0.75rem 0;
+  text-align: center;
+  text-transform: uppercase;
+  flex: 1;
+}
+main.container .game_board .tiles-and-scores .scores div span {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.875px;
+}
+main.container .game_board .tiles-and-scores .scores div p {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+}
+main.container .game_board .tiles-and-scores .scores .you {
+  background: #31c3bd;
+}
+main.container .game_board .tiles-and-scores .scores .ties {
+  background: #a8bfc9;
+}
+main.container .game_board .tiles-and-scores .scores .cpu {
+  background: #f2b137;
 }
 
 /*# sourceMappingURL=styles.css.map */
