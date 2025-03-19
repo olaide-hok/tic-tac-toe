@@ -8,7 +8,7 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="./assets/favicon-32x32.png"
+      href="./code/assets/favicon-32x32.png"
     >
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,30 +23,55 @@
     <title>Frontend Mentor | Tic Tac Toe</title>
   </head>
   <body>
-    <!-- New game menu start -->
+    <main class="container">
+      <div class="d-flex wrapper">
+        <img src="./code/assets/logo.svg" alt="tic tac logo">
+        <!-- New game menu start -->
 
-    Pick player 1's mark Remember: X goes first New Game (vs CPU) New Game (vs
-    player)
+        <div class="d-flex pick-player">
+          <h1 class="instruction">Pick player 1's mark</h1>
 
-    <!-- New game menu end -->
+          <div class="flex-row pick_mark">
+            <button type="button" id="x-btn" class="x_btn">
+              <img src="./code/assets/icon-x-start.svg" alt="x icon btn">
+            </button>
+            <button type="button" id="o-btn" class="o_btn">
+              <img src="./code/assets/icon-o-start.svg" alt="o icon btn">
+            </button>
+          </div>
 
-    <!-- Game board start -->
+          <p class="reminder">Remember: X goes first</p>
+        </div>
+
+        <div class="flex-col select-opponent">
+          <button class="vs-cpu_btn" type="button">New Game (vs CPU)</button>
+          <button class="vs-player_btn" type="button">
+            New Game (vs player)
+          </button>
+        </div>
+      </div>
+      <!-- New game menu end -->
+
+      <!-- Game board start -->
+
+      <div class="game_board"></div>
+    </main>
 
     <!-- x/o icon -->
-    turn X (You)
+    <!-- turn X (You) -->
     <!-- Your score -->
-    Ties
+    <!-- Ties -->
     <!-- Ties score -->
-    X (CPU)
+    <!-- X (CPU) -->
     <!-- CPU score -->
 
-    Oh no, you lost You won! Player
+    <!-- Oh no, you lost You won! Player -->
     <!-- 1/2 -->
-    wins!
+    <!-- wins! -->
 
     <!-- x/o icon -->
-    takes the round Round tied Restart game? Quit Next round No, cancel Yes,
-    restart
+    <!-- takes the round Round tied Restart game? Quit Next round No, cancel Yes,
+    restart -->
 
     <!-- Game board end -->
   </body>
