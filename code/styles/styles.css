@@ -225,9 +225,12 @@ main.container .game_board .status .current_player {
 main.container .game_board .status .restart {
   background-color: #a8bfc9;
   border-radius: 8px;
-  box-shadow: 0px -8px 0px 0px #a8bfc9 inset;
+  box-shadow: 0px -4px 0px 0px #6b8997 inset;
   width: 40px;
   height: 40px;
+}
+main.container .game_board .status .restart:hover {
+  background: #dbe8ed;
 }
 main.container .game_board .tiles-and-scores {
   row-gap: 1.25rem;
@@ -283,11 +286,11 @@ main.container .winner-loser_banner {
   align-items: center;
   row-gap: 1rem;
   padding: 2.5rem 2.9375rem 3rem 3rem;
-  position: absolute;
   top: 50%; /* Move down by 50% of the parent's height */
+  position: absolute;
   left: 50%; /* Move right by 50% of the parent's width */
   transform: translate(-50%, -50%);
-  width: 100%;
+  width: 100vw;
   z-index: 2;
 }
 main.container .winner-loser_banner .result_desc {
@@ -325,6 +328,9 @@ main.container .winner-loser_banner .quit-next-round_btns .quit {
   color: #1a2a33;
   text-transform: uppercase;
 }
+main.container .winner-loser_banner .quit-next-round_btns .quit:hover {
+  background: #dbe8ed;
+}
 main.container .winner-loser_banner .quit-next-round_btns .next_round {
   background-color: #f2b137;
   box-shadow: 0px -4px 0px 0px #cc8b13 inset;
@@ -336,6 +342,9 @@ main.container .winner-loser_banner .quit-next-round_btns .next_round {
   color: #1a2a33;
   text-transform: uppercase;
 }
+main.container .winner-loser_banner .quit-next-round_btns .next_round:hover {
+  background: #ffc860;
+}
 main.container .restart_banner {
   align-items: center;
   background-color: #1f3641;
@@ -343,10 +352,9 @@ main.container .restart_banner {
   row-gap: 1.5rem;
   padding: 3.8125rem 2.125rem;
   position: absolute;
-  top: 50%; /* Move down by 50% of the parent's height */
   left: 50%; /* Move right by 50% of the parent's width */
   transform: translate(-50%, -50%);
-  width: 100%;
+  width: 100vw;
   z-index: 2;
 }
 main.container .restart_banner .result_desc {
@@ -381,6 +389,145 @@ main.container .restart_banner .restart_btns .yes_restart {
   background: #f2b137;
   box-shadow: 0px -4px 0px 0px #cc8b13 inset;
   padding: 0.9375rem 1.09375rem 1.0625rem 0.96875rem;
+}
+
+@media screen and (min-width: 768px) {
+  main.container .wrapper {
+    padding: 0;
+    margin: 17.3125rem 9.625rem;
+    row-gap: 2.5rem;
+    width: 28.75rem;
+  }
+  main.container .wrapper .pick-player {
+    row-gap: 1rem;
+  }
+  main.container .wrapper .pick-player .pick_mark {
+    margin: 0.5rem 0 0.0625rem;
+  }
+  main.container .wrapper .select-opponent {
+    row-gap: 1.25rem;
+  }
+  main.container .wrapper .select-opponent .vs-cpu_btn {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1.25px;
+    text-transform: uppercase;
+    padding: 1.0625rem 0 1.5625rem;
+  }
+  main.container .wrapper .select-opponent .vs-player_btn {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1.25px;
+    text-transform: uppercase;
+    padding: 1.0625rem 0 1.5625rem;
+  }
+  main.container .game_board {
+    row-gap: 1.1875rem;
+    margin: 12.5625rem auto;
+    padding: 0;
+    width: 28.75rem;
+  }
+  main.container .game_board .status .current_player {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 0.8125rem 1.875rem 1.1875rem;
+  }
+  main.container .game_board .status .restart {
+    width: 52px;
+    height: 52px;
+  }
+  main.container .game_board .tiles-and-scores {
+    row-gap: 1.25rem;
+  }
+  main.container .game_board .tiles-and-scores .tiles .tile {
+    border-radius: 15px;
+    width: 140px;
+    height: 140px;
+  }
+  main.container .game_board .tiles-and-scores .scores div {
+    border-radius: 15px;
+  }
+  main.container .game_board .tiles-and-scores .scores div p {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  main.container .winner-loser_banner {
+    row-gap: 1rem;
+    padding: 2.8125rem 8.625rem;
+    top: 29%;
+    margin-top: 12.5625rem;
+  }
+  main.container .winner-loser_banner .result_desc {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  main.container .winner-loser_banner .winner {
+    column-gap: 1.5rem;
+  }
+  main.container .winner-loser_banner .winner img {
+    width: 64px;
+    height: 64px;
+  }
+  main.container .winner-loser_banner .winner span {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+  }
+  main.container .restart_banner {
+    row-gap: 1.9375rem;
+    padding: 4.1875rem 13.125rem;
+    top: 29%;
+    margin-top: 12.5625rem;
+  }
+  main.container .restart_banner .result_desc {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+  }
+  main.container .restart_banner .restart_btns {
+    column-gap: 1rem;
+  }
+  main.container .restart_banner .restart_btns .no_cancel {
+    padding: 0.9375rem 1rem 1.0625rem 1.125rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  main.container .wrapper {
+    margin: 13.4375rem auto;
+  }
+  main.container .game_board {
+    row-gap: 1.25rem;
+    margin: 8.6875rem auto;
+  }
+  main.container .winner-loser_banner {
+    row-gap: 1rem;
+    padding: 2.8125rem 8.625rem;
+    top: 13%;
+    margin-top: 8.6875rem;
+  }
+  main.container .restart_banner {
+    row-gap: 1.9375rem;
+    padding: 4.1875rem 13.125rem;
+    top: 27%;
+  }
+  main.container .restart_banner .result_desc {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+  }
+  main.container .restart_banner .restart_btns {
+    column-gap: 1rem;
+  }
+  main.container .restart_banner .restart_btns .no_cancel {
+    padding: 0.9375rem 1rem 1.0625rem 1.125rem;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

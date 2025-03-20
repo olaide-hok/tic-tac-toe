@@ -187,9 +187,13 @@ main {
         .restart {
           background-color: $silver;
           border-radius: 8px;
-          box-shadow: 0px -8px 0px 0px $silver inset;
+          box-shadow: 0px -4px 0px 0px #6b8997 inset;
           width: 40px;
           height: 40px;
+
+          &:hover {
+            background: $silverHover;
+          }
         }
       }
 
@@ -254,6 +258,7 @@ main {
       align-items: center;
       row-gap: 1rem;
       padding: rem(40px) rem(47) rem(48) rem(48);
+      top: 50%; /* Move down by 50% of the parent's height */
       @include pos-abs-center;
 
       .result_desc {
@@ -283,6 +288,10 @@ main {
           padding: rem(15px) rem(16px) rem(17px) rem(17px);
           @include heading-xs;
           @include quit-next-btns;
+
+          &:hover {
+            background: $silverHover;
+          }
         }
 
         .next_round {
@@ -291,6 +300,10 @@ main {
           padding: rem(15px) rem(16px) rem(17px) rem(17px);
           @include heading-xs;
           @include quit-next-btns;
+
+          &:hover {
+            background: $lightYellowHover;
+          }
         }
       }
     }
@@ -333,9 +346,160 @@ main {
 }
 
 @media screen and (min-width: 768px) {
+  main {
+    &.container {
+      .wrapper {
+        padding: 0;
+        margin: rem(277) rem(154);
+        row-gap: rem(40);
+        width: rem(460);
+
+        .pick-player {
+          row-gap: 1rem;
+
+          .pick_mark {
+            margin: rem(8) 0 rem(1);
+          }
+        }
+
+        .select-opponent {
+          row-gap: rem(20);
+
+          .vs-cpu_btn {
+            @include heading-s;
+            padding: rem(17px) 0 rem(25px);
+          }
+
+          .vs-player_btn {
+            @include heading-s;
+            padding: rem(17px) 0 rem(25px);
+          }
+        }
+      }
+
+      .game_board {
+        row-gap: rem(19px);
+        margin: rem(201) auto;
+        padding: 0;
+        width: rem(460px);
+
+        .status {
+          .current_player {
+            @include heading-xs;
+            padding: rem(13px) rem(30px) rem(19px);
+          }
+
+          .restart {
+            width: 52px;
+            height: 52px;
+          }
+        }
+
+        .tiles-and-scores {
+          row-gap: rem(20px);
+
+          .tiles {
+            .tile {
+              border-radius: 15px;
+              width: 140px;
+              height: 140px;
+            }
+          }
+
+          .scores {
+            div {
+              border-radius: 15px;
+
+              p {
+                @include heading-m;
+              }
+            }
+          }
+        }
+      }
+
+      .winner-loser_banner {
+        row-gap: 1rem;
+        padding: rem(45) rem(138);
+        top: 29%;
+        margin-top: rem(201);
+
+        .result_desc {
+          @include heading-xs;
+        }
+
+        .winner {
+          column-gap: rem(24);
+          img {
+            width: 64px;
+            height: 64px;
+          }
+          span {
+            @include heading-l;
+          }
+        }
+      }
+
+      .restart_banner {
+        row-gap: rem(31);
+        padding: rem(67) rem(210);
+        top: 29%;
+        margin-top: rem(201);
+
+        .result_desc {
+          @include heading-l;
+        }
+
+        .restart_btns {
+          column-gap: 1rem;
+
+          .no_cancel {
+            padding: rem(15px) rem(16px) rem(17px) rem(18px);
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 1024px) {
+  main {
+    &.container {
+      .wrapper {
+        margin: rem(215) auto;
+      }
+
+      .game_board {
+        row-gap: rem(20px);
+        margin: rem(139) auto;
+      }
+
+      .winner-loser_banner {
+        row-gap: 1rem;
+        padding: rem(45) rem(138);
+        top: 13%;
+        margin-top: rem(139);
+      }
+
+      .restart_banner {
+        row-gap: rem(31);
+        padding: rem(67) rem(210);
+        top: 27%;
+
+        .result_desc {
+          @include heading-l;
+        }
+
+        .restart_btns {
+          column-gap: 1rem;
+
+          .no_cancel {
+            padding: rem(15px) rem(16px) rem(17px) rem(18px);
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 1440px) {
