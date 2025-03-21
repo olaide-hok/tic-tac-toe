@@ -30,8 +30,20 @@ class TicTacToe {
       [2, 4, 6], // Diagonals
     ];
 
+    this.winnerLoserBanner = document.querySelector(".winner-loser_banner");
+    this.restartBanner = document.querySelector(".restart_banner");
+    this.resultText = document.getElementById("result-text");
+    this.winnerText = document.querySelector(".winner");
+    this.quitBtn = document.getElementById("quit");
+    this.nextRoundBtn = document.getElementById("next-round");
+    this.bgOverlay = document.getElementById("overlay");
+    this.restartGameBtn = document.getElementById("restart-game");
+    this.noCancelbtn = document.getElementById("no-cancel");
+    this.yesRestartBtn = document.getElementById("yes-restart");
+
     this.setupEventListners();
   }
+
   setupEventListners() {
     this.singlePlayer.addEventListener("click", () => {
       this.startGame("solo");
@@ -46,15 +58,37 @@ class TicTacToe {
         this.handleTileClick(tile);
       });
     });
+
+    this.quitBtn.addEventListener("click", () => this.handleQuit());
+    this.nextRoundBtn.addEventListener("click", () => this.handleNextRound());
+    this.restartGameBtn.addEventListener("click", () =>
+      this.openRestartBanner(),
+    );
+    this.noCancelbtn.addEventListener("click", () => this.closeRestartBanner());
+    this.yesRestartBtn.addEventListener("click", () => this.handleRestart());
+  }
+
+  // Helper function to toggle classes
+  toggleElementVisibility(
+    element,
+    show,
+    displayClass = "d-flex",
+    hideClass = "d-none",
+  ) {
+    if (show) {
+      element.classList.remove(hideClass);
+      element.classList.add(displayClass);
+    } else {
+      element.classList.remove(displayClass);
+      element.classList.add(hideClass);
+    }
   }
 
   startGame(mode) {
     this.gameMode = mode;
     this.isGameActive = true;
-    this.gameMenu.classList.remove("d-flex");
-    this.gameMenu.classList.add("d-none");
-    this.gameBoard.classList.remove("d-none");
-    this.gameBoard.classList.add("d-flex");
+    this.toggleElementVisibility(this.gameMenu, false);
+    this.toggleElementVisibility(this.gameBoard, true);
 
     // Update player turn display
     this.currentPlayerDisplay.textContent = `${this.currentPlayer} turn`;
@@ -70,11 +104,10 @@ class TicTacToe {
       playerO: 0,
       ties: 0,
     };
-
     this.playerXScore.textContent = currentScores.playerX;
     this.tiesScore.textContent = currentScores.ties;
 
-    if (this.gameMode === "solo") {
+    if (mode === "solo") {
       this.playerOScore.textContent = currentScores.cpu;
     }
   }
@@ -115,7 +148,7 @@ class TicTacToe {
     const mode = this.gameMode === "solo" ? "solo" : "multi";
     if (winner === "X") {
       this.scores[mode].playerX++;
-    } else if (winner === "0") {
+    } else if (winner === "O") {
       if (this.gameMode === "solo") {
         this.scores.solo.cpu++;
       } else {
@@ -124,7 +157,7 @@ class TicTacToe {
     } else if (winner === "tie") {
       this.scores[mode].ties++;
     }
-    this.updateScoreDisplay();
+    this.updateScoreDisplay(mode);
   }
 
   // check winner
@@ -146,7 +179,6 @@ class TicTacToe {
 
   makeMove(index) {
     this.board[index] = this.currentPlayer;
-    console.log("board", this.board);
   }
 
   computerMove() {
@@ -156,10 +188,12 @@ class TicTacToe {
 
     if (this.checkWin()) {
       this.updateScore(this.currentPlayer);
+      this.handleGameOver(this.currentPlayer);
       return;
     }
 
     if (this.checkDraw()) {
+      this.handleGameOver("tie");
       this.updateScore("ties");
       return;
     }
@@ -215,6 +249,89 @@ class TicTacToe {
     return -1;
   }
 
+  openRestartBanner() {
+    this.toggleElementVisibility(this.restartBanner, true);
+    this.toggleElementVisibility(this.bgOverlay, true);
+  }
+  closeRestartBanner() {
+    this.toggleElementVisibility(this.restartBanner, false);
+    this.toggleElementVisibility(this.bgOverlay, false);
+  }
+
+  handleNextRound() {
+    this.resetBoard();
+    this.currentPlayerDisplay.textContent = `${this.currentPlayer} turn`;
+    this.toggleElementVisibility(this.bgOverlay, false);
+    this.toggleElementVisibility(this.winnerLoserBanner, false);
+  }
+
+  resetBoard() {
+    this.board = Array(9).fill("");
+    this.currentPlayer = "X";
+    this.isGameActive = true;
+    this.updateTileDisplay();
+  }
+
+  resetScore() {
+    this.scores = {
+      solo: { playerX: 0, cpu: 0, ties: 0 },
+      multi: { playerX: 0, playerO: 0, ties: 0 },
+    };
+    this.updateScoreDisplay(this.gameMode);
+    this.resetBoard();
+  }
+
+  handleQuit() {
+    this.resetScore();
+    this.gameMode = null;
+    this.toggleElementVisibility(this.gameMenu, true);
+    this.toggleElementVisibility(this.gameBoard, false);
+    this.toggleElementVisibility(this.bgOverlay, false);
+    this.toggleElementVisibility(this.winnerLoserBanner, false);
+  }
+
+  handleRestart() {
+    this.handleQuit();
+    this.toggleElementVisibility(this.restartBanner, false);
+  }
+
+  handleGameOver(winner) {
+    this.isGameActive = false;
+    this.toggleElementVisibility(this.bgOverlay, true);
+    this.toggleElementVisibility(this.winnerLoserBanner, true);
+
+    if (winner === "X" || winner === "O") {
+      this.resultText.classList.remove("d-none");
+      this.resultText.textContent =
+        winner === "X"
+          ? "You won!"
+          : winner === "O"
+            ? "Oh no, you lost..."
+            : "";
+    }
+
+    if (winner === "tie") {
+      this.resultText.classList.add("d-none");
+    }
+
+    this.winnerText.innerHTML =
+      winner === "X"
+        ? `
+          <img src="./code/assets/icon-x.svg" alt="x icon">
+          <span>Takes the round</span>
+    `
+        : winner === "O"
+          ? `
+          <img src="./code/assets/icon-o.svg" alt="o icon">
+          <span>Takes the round</span>
+    `
+          : winner === "tie"
+            ? `
+                <p class="result_tie" style="margin-bottom:8px;">round tied</p>
+    `
+            : "";
+  }
+
   handleTileClick(tile) {
     if (!this.isGameActive) return;
 
@@ -227,27 +344,26 @@ class TicTacToe {
     this.updateTileDisplay();
 
     if (this.checkWin()) {
-      console.log("win has haopeed");
-
+      this.handleGameOver(this.currentPlayer);
       this.updateScore(this.currentPlayer);
       return;
     }
 
     if (this.checkDraw()) {
-      console.log("draw");
-
+      this.handleGameOver("tie");
       this.updateScore("tie");
       return;
     }
+
+    // switch this.currentPlayer value
     this.switchPlayer();
-    console.log("after swithc");
+
     // when playing with CPU or Solo mode
     if (
       this.gameMode === "solo" &&
       this.isGameActive &&
       this.currentPlayer === "O"
     ) {
-      console.log("computer move");
       setTimeout(() => this.computerMove(), 500);
     }
   }
