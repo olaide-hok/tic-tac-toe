@@ -246,7 +246,13 @@ main.container .game_board .tiles-and-scores .tiles .tile {
   box-shadow: 0px -8px 0px 0px #10212a inset;
   width: 96px;
   height: 96px;
-  padding: 0.8rem 1rem 1.5rem 1rem;
+  position: relative;
+}
+main.container .game_board .tiles-and-scores .tiles .tile svg {
+  position: absolute;
+  top: 50%; /* Move down by 50% of the parent's height */
+  left: 50%; /* Move right by 50% of the parent's width */
+  transform: translate(-50%, -50%);
 }
 main.container .game_board .tiles-and-scores .tiles .tile:hover {
   cursor: pointer;
@@ -311,6 +317,14 @@ main.container .winner-loser_banner .result_desc {
   color: #a8bfc9;
   text-transform: uppercase;
 }
+main.container .winner-loser_banner .result_tie {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #a8bfc9;
+  text-transform: uppercase;
+}
 main.container .winner-loser_banner .winner {
   column-gap: 0.5rem;
 }
@@ -367,6 +381,7 @@ main.container .restart_banner {
   transform: translate(-50%, -50%);
   width: 100vw;
   z-index: 2;
+  top: 50%; /* Move down by 50% of the parent's height */
 }
 main.container .restart_banner .result_desc {
   font-size: 24px;
