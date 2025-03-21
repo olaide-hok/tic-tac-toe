@@ -246,9 +246,20 @@ main.container .game_board .tiles-and-scores .tiles .tile {
   box-shadow: 0px -8px 0px 0px #10212a inset;
   width: 96px;
   height: 96px;
+  padding: 0.8rem 1rem 1.5rem 1rem;
 }
 main.container .game_board .tiles-and-scores .tiles .tile:hover {
   cursor: pointer;
+}
+main.container .game_board .tiles-and-scores .tiles .tile:hover svg#cross path {
+  fill: none;
+  stroke: #31c3bd;
+  stroke-width: "2px";
+}
+main.container .game_board .tiles-and-scores .tiles .tile:hover svg#knot path {
+  fill: none;
+  stroke: #f2b137;
+  stroke-width: "2px";
 }
 main.container .game_board .tiles-and-scores .scores {
   column-gap: 1.25rem;
