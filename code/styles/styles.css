@@ -535,9 +535,10 @@ main.container .restart_banner .restart_btns .yes_restart {
     row-gap: 1rem;
     padding: 2.8125rem 8.625rem;
     top: 13%;
-    margin-top: 8.6875rem;
+    margin-top: 15.625rem;
   }
   main.container .restart_banner {
+    margin-top: 3.4375rem;
     row-gap: 1.9375rem;
     padding: 4.1875rem 13.125rem;
     top: 27%;
