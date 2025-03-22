@@ -42,6 +42,9 @@ class TicTacToe {
     this.yesRestartBtn = document.getElementById("yes-restart");
 
     this.setupEventListners();
+
+    // Load saved game state
+    this.loadGameState();
   }
 
   setupEventListners() {
@@ -93,6 +96,7 @@ class TicTacToe {
     // Update player turn display
     this.currentPlayerDisplay.textContent = `${this.currentPlayer} turn`;
 
+    this.updateTileDisplay();
     this.updateScoreDisplay(mode);
   }
 
@@ -109,6 +113,8 @@ class TicTacToe {
 
     if (mode === "solo") {
       this.playerOScore.textContent = currentScores.cpu;
+    } else {
+      this.playerOScore.textContent = currentScores.playerO;
     }
   }
 
@@ -383,6 +389,34 @@ class TicTacToe {
       scores: this.scores,
     };
     localStorage.setItem("ticTacToeGame", JSON.stringify(gameState));
+  }
+
+  loadGameState() {
+    const savedGame = localStorage.getItem("ticTacToeGame");
+    if (savedGame) {
+      const gameState = JSON.parse(savedGame);
+      this.board = gameState.board;
+      this.currentPlayer = gameState.currentPlayer;
+      this.isGameActive = gameState.isGameActive;
+      this.gameMode = gameState.gameMode;
+      this.scores = {
+        solo: {
+          playerX: gameState.scores?.solo?.playerX || 0,
+          cpu: gameState.scores?.solo?.cpu || 0,
+          ties: gameState.scores?.solo?.ties || 0,
+        },
+        multi: {
+          playerX: gameState.scores?.multi?.playerX || 0,
+          playerO: gameState.scores?.multi?.playerO || 0,
+          ties: gameState.scores?.multi?.ties || 0,
+        },
+      };
+
+      if (this.isGameActive) {
+        this.startGame(this.gameMode);
+      }
+      this.updateScoreDisplay(this.gameMode);
+    }
   }
 }
 
