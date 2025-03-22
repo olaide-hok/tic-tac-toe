@@ -30,6 +30,8 @@ class TicTacToe {
       [2, 4, 6], // Diagonals
     ];
 
+    this.winnerIndexes = null;
+
     this.winnerLoserBanner = document.querySelector(".winner-loser_banner");
     this.restartBanner = document.querySelector(".restart_banner");
     this.resultText = document.getElementById("result-text");
@@ -45,6 +47,17 @@ class TicTacToe {
 
     // Load saved game state
     this.loadGameState();
+
+    // Call this method once during initialization
+    this.initializeTileMap();
+  }
+
+  // Initialize the tile map
+  initializeTileMap() {
+    this.tileMap = new Map();
+    this.tiles.forEach((tile) => {
+      this.tileMap.set(Number(tile.dataset.index), tile);
+    });
   }
 
   setupEventListners() {
@@ -110,6 +123,53 @@ class TicTacToe {
   getOOutlineIcon() {
     return `
       <svg width="66" height="66" xmlns="http://www.w3.org/2000/svg"><path d="M33 1c17.673 0 32 14.327 32 32 0 17.673-14.327 32-32 32C15.327 65 1 50.673 1 33 1 15.327 15.327 1 33 1Zm0 18.963c-7.2 0-13.037 5.837-13.037 13.037 0 7.2 5.837 13.037 13.037 13.037 7.2 0 13.037-5.837 13.037-13.037 0-7.2-5.837-13.037-13.037-13.037Z" stroke="#F2B137" stroke-width="2" fill="none"/></svg>
+    `;
+  }
+
+  getXWinIcon() {
+    return `
+   <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_i_0_460)">
+<rect width="96" height="96" rx="10" fill="#31C3BD"/>
+</g>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M62.0709 25.5126C60.8993 24.3411 58.9998 24.3411 57.8283 25.5126L48 35.3409L38.1717 25.5126C37.0002 24.3411 35.1007 24.3411 33.9291 25.5126L29.5126 29.9291C28.3411 31.1007 28.3411 33.0002 29.5126 34.1717L39.3409 44L29.5126 53.8283C28.3411 54.9998 28.3411 56.8993 29.5126 58.0709L33.9291 62.4874C35.1007 63.6589 37.0002 63.6589 38.1717 62.4874L48 52.6591L57.8283 62.4874C58.9998 63.6589 60.8993 63.6589 62.0709 62.4874L66.4874 58.0709C67.6589 56.8993 67.6589 54.9998 66.4874 53.8283L56.6591 44L66.4874 34.1717C67.6589 33.0002 67.6589 31.1007 66.4874 29.9291L62.0709 25.5126Z" fill="#1F3641"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M67.4462 30.6122L61.3878 24.5538C60.6494 23.8154 59.4522 23.8154 58.7137 24.5538L48 35.2676L37.2863 24.5538C36.5478 23.8154 35.3506 23.8154 34.6122 24.5538L28.5538 30.6122C27.8154 31.3506 27.8154 32.5478 28.5538 33.2863L39.2676 44L28.5538 54.7137C27.8154 55.4522 27.8154 56.6494 28.5538 57.3878L34.6122 63.4462C35.3506 64.1846 36.5478 64.1846 37.2863 63.4462L48 52.7324L58.7137 63.4462C59.4522 64.1846 60.6494 64.1846 61.3878 63.4462L67.4462 57.3878C68.1846 56.6494 68.1846 55.4522 67.4462 54.7137L56.7324 44L67.4462 33.2863C68.1846 32.5478 68.1846 31.3506 67.4462 30.6122Z" fill="#1F3641"/>
+<defs>
+<filter id="filter0_i_0_460" x="0" y="0" width="96" height="96" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="-8"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.0666667 0 0 0 0 0.54902 0 0 0 0 0.529412 0 0 0 1 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_0_460"/>
+</filter>
+</defs>
+</svg>
+
+    `;
+  }
+
+  getOWinIcon() {
+    return `    
+     <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" fill="none">
+  <g filter="url(#filter0_i_0_569)">
+    <rect width="96" height="96" rx="10" fill="#F2B137"/>
+  </g>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M68 44C68 32.9543 59.0457 24 48 24C36.9543 24 28 32.9543 28 44C28 55.0457 36.9543 64 48 64C59.0457 64 68 55.0457 68 44ZM39.8519 44C39.8519 39.4999 43.4999 35.8519 48 35.8519C52.5001 35.8519 56.1481 39.4999 56.1481 44C56.1481 48.5001 52.5001 52.1481 48 52.1481C43.4999 52.1481 39.8519 48.5001 39.8519 44Z" fill="#1F3641"/>
+  <defs>
+    <filter id="filter0_i_0_569" x="0" y="0" width="96" height="96" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="-8"/>
+      <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.8 0 0 0 0 0.545098 0 0 0 0 0.0745098 0 0 0 1 0"/>
+      <feBlend mode="normal" in2="shape" result="effect1_innerShadow_0_569"/>
+    </filter>
+  </defs>
+</svg>
+
     `;
   }
 
@@ -179,6 +239,7 @@ class TicTacToe {
   // how to determine a win
   checkWin() {
     return this.winningCombinations.some((combination) => {
+      this.winnerIndexes = combination;
       const [a, b, c] = combination;
       return (
         this.board[a] !== "" &&
@@ -209,18 +270,6 @@ class TicTacToe {
     this.saveGameState();
   }
 
-  // check winner
-  checkWinner() {
-    const winner = this.checkWin(this.currentPlayer);
-    if (winner) {
-      this.isGameActive = false;
-      this.updateScore(this.currentPlayer);
-    } else if (!this.board.includes(null)) {
-      this.isGameActive = false;
-      this.updateScore("tie");
-    }
-  }
-
   switchPlayer() {
     this.currentPlayer = this.currentPlayer === "X" ? "O" : "X";
     this.currentPlayerDisplay.textContent = `${this.currentPlayer} turn`;
@@ -239,6 +288,8 @@ class TicTacToe {
     if (this.checkWin()) {
       this.updateScore(this.currentPlayer);
       this.handleGameOver(this.currentPlayer);
+      // Update winning tiles with the correct icon
+      this.updateWinningTiles(this.currentPlayer);
       return;
     }
 
@@ -385,6 +436,20 @@ class TicTacToe {
             : "";
   }
 
+  // Helper method to update winning tiles
+  updateWinningTiles(currentPlayer) {
+    const winIcon =
+      currentPlayer === "X" ? this.getXWinIcon() : this.getOWinIcon();
+
+    // Use a map for faster lookups
+    this.winnerIndexes.forEach((index) => {
+      const tile = this.tileMap.get(index);
+      if (tile) {
+        tile.innerHTML = winIcon;
+      }
+    });
+  }
+
   handleTileClick(tile) {
     if (!this.isGameActive) return;
 
@@ -399,6 +464,8 @@ class TicTacToe {
 
     if (this.checkWin()) {
       this.handleGameOver(this.currentPlayer);
+      // Update winning tiles with the correct icon
+      this.updateWinningTiles(this.currentPlayer);
       this.updateScore(this.currentPlayer);
       return;
     }
