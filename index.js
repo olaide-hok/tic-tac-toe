@@ -158,6 +158,7 @@ class TicTacToe {
       this.scores[mode].ties++;
     }
     this.updateScoreDisplay(mode);
+    this.saveGameState();
   }
 
   // check winner
@@ -185,6 +186,7 @@ class TicTacToe {
     let bestMove = this.findBestMove();
     this.makeMove(bestMove);
     this.updateTileDisplay();
+    this.saveGameState();
 
     if (this.checkWin()) {
       this.updateScore(this.currentPlayer);
@@ -270,6 +272,7 @@ class TicTacToe {
     this.currentPlayer = "X";
     this.isGameActive = true;
     this.updateTileDisplay();
+    this.saveGameState();
   }
 
   resetScore() {
@@ -278,6 +281,7 @@ class TicTacToe {
       multi: { playerX: 0, playerO: 0, ties: 0 },
     };
     this.updateScoreDisplay(this.gameMode);
+    this.saveGameState();
     this.resetBoard();
   }
 
@@ -288,6 +292,7 @@ class TicTacToe {
     this.toggleElementVisibility(this.gameBoard, false);
     this.toggleElementVisibility(this.bgOverlay, false);
     this.toggleElementVisibility(this.winnerLoserBanner, false);
+    this.saveGameState();
   }
 
   handleRestart() {
@@ -318,12 +323,12 @@ class TicTacToe {
       winner === "X"
         ? `
           <img src="./code/assets/icon-x.svg" alt="x icon">
-          <span>Takes the round</span>
+          <span class="cross">Takes the round</span>
     `
         : winner === "O"
           ? `
           <img src="./code/assets/icon-o.svg" alt="o icon">
-          <span>Takes the round</span>
+          <span class="knot">Takes the round</span>
     `
           : winner === "tie"
             ? `
@@ -342,6 +347,7 @@ class TicTacToe {
 
     this.makeMove(index);
     this.updateTileDisplay();
+    this.saveGameState();
 
     if (this.checkWin()) {
       this.handleGameOver(this.currentPlayer);
@@ -366,6 +372,17 @@ class TicTacToe {
     ) {
       setTimeout(() => this.computerMove(), 500);
     }
+  }
+
+  saveGameState() {
+    const gameState = {
+      board: this.board,
+      currentPlayer: this.currentPlayer,
+      gameMode: this.gameMode,
+      isGameActive: this.isGameActive,
+      scores: this.scores,
+    };
+    localStorage.setItem("ticTacToeGame", JSON.stringify(gameState));
   }
 }
 
