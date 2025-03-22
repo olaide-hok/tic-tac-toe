@@ -337,7 +337,12 @@ main.container .winner-loser_banner .winner span {
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
+}
+main.container .winner-loser_banner .winner span.knot {
   color: #f2b137;
+}
+main.container .winner-loser_banner .winner span.cross {
+  color: #31c3bd;
 }
 main.container .winner-loser_banner .quit-next-round_btns {
   column-gap: 1rem;

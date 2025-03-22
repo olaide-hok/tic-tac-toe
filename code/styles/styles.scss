@@ -305,7 +305,12 @@ main {
         }
         span {
           @include heading-m;
-          color: $lightYellow;
+          &.knot {
+            color: $lightYellow;
+          }
+          &.cross {
+            color: $lightBlue;
+          }
         }
       }
 
