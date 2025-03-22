@@ -222,22 +222,6 @@ main {
 
             &:hover {
               cursor: pointer;
-
-              svg#cross {
-                path {
-                  fill: none;
-                  stroke: $lightBlue;
-                  stroke-width: "2px";
-                }
-              }
-
-              svg#knot {
-                path {
-                  fill: none;
-                  stroke: $lightYellow;
-                  stroke-width: "2px";
-                }
-              }
             }
           }
         }
