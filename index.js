@@ -196,7 +196,7 @@ class TicTacToe {
     this.toggleElementVisibility(this.gameBoard, true);
 
     // Update player turn display
-    this.currentPlayerDisplay.textContent = `${this.currentPlayer} turn`;
+    this.showPlayerTurn(this.currentPlayer);
 
     this.updateTileDisplay();
     this.updateScoreDisplay(mode);
@@ -270,9 +270,32 @@ class TicTacToe {
     this.saveGameState();
   }
 
+  getXTurnIcon() {
+    return `
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M15.7785 2.64487L13.3551 0.22153C13.0598 -0.0738435 12.5809 -0.0738435 12.2855 0.22153L8 4.50702L3.71451 0.22153C3.41914 -0.0738435 2.94024 -0.0738435 2.64487 0.22153L0.22153 2.64487C-0.0738435 2.94024 -0.0738435 3.41914 0.22153 3.71451L4.50702 8L0.22153 12.2855C-0.0738435 12.5809 -0.0738435 13.0598 0.22153 13.3551L2.64487 15.7785C2.94024 16.0738 3.41914 16.0738 3.71451 15.7785L8 11.493L12.2855 15.7785C12.5809 16.0738 13.0598 16.0738 13.3551 15.7785L15.7785 13.3551C16.0738 13.0598 16.0738 12.5809 15.7785 12.2855L11.493 8L15.7785 3.71451C16.0738 3.41914 16.0738 2.94024 15.7785 2.64487Z" fill="#A8BFC9"/>
+      </svg>
+    `;
+  }
+
+  getOTurnIcon() {
+    return `
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16C12.4183 16 16 12.4183 16 8ZM4.74074 8C4.74074 6.19996 6.19996 4.74074 8 4.74074C9.80004 4.74074 11.2593 6.19996 11.2593 8C11.2593 9.80004 9.80004 11.2593 8 11.2593C6.19996 11.2593 4.74074 9.80004 4.74074 8Z" fill="#A8BFC9"/>
+      </svg>
+    `;
+  }
+
+  showPlayerTurn(player) {
+    return (this.currentPlayerDisplay.innerHTML =
+      player === "X"
+        ? `${this.getXTurnIcon()} turn`
+        : ` ${this.getOTurnIcon()} turn`);
+  }
+
   switchPlayer() {
     this.currentPlayer = this.currentPlayer === "X" ? "O" : "X";
-    this.currentPlayerDisplay.textContent = `${this.currentPlayer} turn`;
+    this.showPlayerTurn(this.currentPlayer);
   }
 
   makeMove(index) {
@@ -361,7 +384,7 @@ class TicTacToe {
 
   handleNextRound() {
     this.resetBoard();
-    this.currentPlayerDisplay.textContent = `${this.currentPlayer} turn`;
+    this.showPlayerTurn(this.currentPlayer);
     this.toggleElementVisibility(this.bgOverlay, false);
     this.toggleElementVisibility(this.winnerLoserBanner, false);
   }
