@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://https://github.com/olaide-hok/tic-tac-toe.git"
+    "url": "git+https://github.com/olaide-hok/tic-tac-toe.git"
   },
   "keywords": [
     "HTML",
@@ -19,9 +19,9 @@
   "author": "Habeeb Kareem",
   "license": "ISC",
   "bugs": {
-    "url": "https://https://github.com/olaide-hok/tic-tac-toe.git/issues"
+    "url": "https://github.com/olaide-hok/tic-tac-toe.git/issues"
   },
-  "homepage": "https://https://github.com/olaide-hok/tic-tac-toe.git#readme",
+  "homepage": "https://github.com/olaide-hok/tic-tac-toe.git#readme",
   "dependencies": {
     "sass": "^1.83.4"
   },
