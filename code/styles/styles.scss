@@ -176,6 +176,9 @@ main {
 
         .current_player {
           @include body;
+          @include flex-row;
+          column-gap: rem(9px);
+          align-items: center;
           border-radius: 5px;
           background: $semiDarkNavy;
           box-shadow: 0px -4px 0px 0px #10212a inset;

@@ -215,6 +215,10 @@ main.container .game_board .status .current_player {
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.875px;
+  display: flex;
+  flex-direction: row;
+  column-gap: 0.5625rem;
+  align-items: center;
   border-radius: 5px;
   background: #1f3641;
   box-shadow: 0px -4px 0px 0px #10212a inset;
