@@ -418,8 +418,9 @@ class TicTacToe {
   }
 
   handleRestart() {
-    this.handleQuit();
+    this.resetBoard();
     this.toggleElementVisibility(this.restartBanner, false);
+    this.toggleElementVisibility(this.bgOverlay, false);
   }
 
   handleGameOver(winner) {
